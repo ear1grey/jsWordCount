@@ -1,0 +1,9 @@
+*[data-jswordcount]:before {
+	font-size: 80%;
+	content: "(" attr(data-jswordcount) ")"; 
+	color: rgba(102,102,102,0.5);
+	float:left;
+}
+*[data-jswordcount]:before {
+	float: right;
+}
