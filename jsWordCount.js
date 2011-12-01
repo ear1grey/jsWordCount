@@ -4,6 +4,7 @@ Free Software: see license.txt Copyright (c) 2011 Rich Boakes
 var jsWordCount = (function () {
 	"use strict";
 	var
+		annotatedElements = ['ARTICLE', 'SECTION', 'P'],
 		countWordsInText = function (str) {
 			var localCount = 0,
 				words = str.trim().split(" "),
@@ -20,8 +21,10 @@ var jsWordCount = (function () {
 			for (i = 0; i < node.childNodes.length; i++) {
 				switch (node.childNodes[i].nodeType) {
 				case 1:
-					localCount += countWordsInElement(node.childNodes[i]);
-					node.setAttribute("data-jsWordCount", localCount);
+					localCount += countWordsInElement(node.childNodes[i]);				
+					if (annotatedElements.indexOf(node.nodeName) >= 0) {
+						node.setAttribute("data-jsWordCount", localCount);
+					}
 					break;
 				case 3:
 					localCount += countWordsInText(node.childNodes[i].textContent);
